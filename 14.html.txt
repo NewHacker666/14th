@@ -1,0 +1,111 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Для моей любимой ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    text-align: center;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    transition: 0.5s;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+#yes {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#no {
+    background-color: #555;
+    color: white;
+    position: relative;
+}
+
+img {
+    width: 200px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="questionScreen" class="screen">
+    <h1>С днём Валентина, любимая ❤️</h1>
+    <h2>Хочешь увидеть мою открытку?</h2>
+
+    <div>
+        <button id="yes" onclick="openCard()">Да</button>
+        <button id="no">Нет</button>
+    </div>
+</div>
+
+<div id="cardScreen" class="screen" style="display:none; color:white;">
+    <h1>Я люблю тебя ❤️</h1>
+    <p>
+        Спасибо, что ты у меня есть.<br>
+        Ты делаешь мою жизнь светлее и теплее.<br>
+        С Днём Валентина, моя самая любимая 💕
+    </p>
+
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+let clickCount = 0;
+
+noBtn.addEventListener("click", () => {
+    clickCount++;
+
+    if(clickCount < 2){
+        // перемещаем кнопку "Нет"
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    } else {
+        // после второго клика исчезает
+        noBtn.style.display = "none";
+        // меняем текст самой кнопки "Да"
+        yesBtn.innerText = "Ты не афигевай, жми тут";
+    }
+});
+
+function openCard() {
+    document.getElementById("questionScreen").style.display = "none";
+    document.getElementById("cardScreen").style.display = "block";
+}
+</script>
+
+</body>
+</html>
